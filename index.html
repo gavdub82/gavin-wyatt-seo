@@ -256,9 +256,13 @@
     section { padding-block: 80px; }
   }
   @media (max-width: 560px) {
-    .hero-meta { gap: 26px; }
+    .hero-meta { gap: 16px; flex-wrap: nowrap; }
+    .hero-meta .item .n { font-size: 22px; }
+    .hero-meta .item .l { font-size: 12px; }
     .steps { grid-template-columns: 1fr; }
     .foot-inner { flex-direction: column; align-items: flex-start; }
+    section { padding-block: 40px; }
+    .hero-grid { padding-top: 32px; padding-bottom: 40px; gap: 28px; }
   }
 </style>
 </head>
