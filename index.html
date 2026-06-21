@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gavin Wyatt — SEO Consultant</title>
+<meta name="description" content="Freelance SEO consultant helping local and blue-collar businesses get found on Google. Technical audits, local SEO, keyword strategy and more." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0C0D12;
+    --ink-soft: #2A2C36;
+    --muted: #5C5F6B;
+    --faint: #8A8D99;
+    --paper: #FFFFFF;
+    --mist: #F4F5F8;
+    --mist-2: #EDEFF4;
+    --line: #E4E6EC;
+    --blue: #2417CE;
+    --blue-bright: #3826F0;
+    --blue-deep: #14123F;
+    --blue-wash: #F0EEFD;
+
+    --sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+    --display: "Schibsted Grotesk", system-ui, sans-serif;
+    --mono: "Spline Sans Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+    --pad-x: 40px;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--blue); color: #fff; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad-x); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 7px; height: 7px;
+    background: var(--blue);
+    border-radius: 50%;
+    flex: none;
+  }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-weight: 600; font-size: 16px;
+    padding: 15px 26px; border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer; transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease, border-color .18s ease;
+    white-space: nowrap;
+  }
+  .btn--primary { background: var(--blue); color: #fff; }
+  .btn--primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(36,23,206,.55); }
+  .btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn--ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .btn--light { background: #fff; color: var(--ink); }
+  .btn--light:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -12px rgba(0,0,0,.4); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translate(3px,-3px); }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand img { height: 30px; width: auto; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.05; }
+  .brand-name b { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .brand-name span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color .15s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { display: flex; align-items: center; gap: 18px; }
+  .nav-toggle { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center;
+    padding-top: 96px; padding-bottom: 104px;
+  }
+  .hero-title { font-family: var(--display); font-size: clamp(46px, 6.2vw, 88px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+  .hero-title .blue { color: var(--blue); }
+  .hero-sub { font-size: clamp(18px, 1.5vw, 21px); color: var(--muted); max-width: 30ch; margin-top: 28px; }
+  .hero-actions { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+  .hero-meta { display: flex; gap: 40px; margin-top: 54px; }
+  .hero-meta .item .n { font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: -0.02em; }
+  .hero-meta .item .l { font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .hero-meta .item .n .u { color: var(--blue); }
+
+  .hero-visual { position: relative; }
+  .rank-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: 0 30px 60px -30px rgba(20,18,63,.28);
+    padding: 26px; position: relative;
+  }
+  .rank-card .rc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .rank-card .rc-head .t { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .rank-card .rc-head .pill { font-family: var(--mono); font-size: 12px; color: var(--blue); background: var(--blue-wash); padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+  .rank-row { display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .rank-row:first-of-type { border-top: none; }
+  .rank-row .pos { font-family: var(--mono); font-weight: 600; color: var(--faint); font-size: 14px; }
+  .rank-row.win .pos { color: var(--blue); }
+  .rank-row .kw { font-size: 15px; font-weight: 500; }
+  .rank-row .kw small { display: block; color: var(--faint); font-weight: 400; font-size: 12.5px; font-family: var(--mono); }
+  .rank-row .delta { font-family: var(--mono); font-size: 13px; font-weight: 600; color: #1F9D55; display: flex; align-items: center; gap: 4px; }
+  .rank-row.win { background: linear-gradient(90deg, var(--blue-wash), transparent); margin-inline: -10px; padding-inline: 10px; border-radius: 10px; border-top: none; }
+
+  .float-badge {
+    position: absolute; bottom: -22px; left: -26px;
+    background: var(--ink); color: #fff; border-radius: 14px;
+    padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 20px 40px -16px rgba(0,0,0,.45);
+  }
+  .float-badge .fb-ic { width: 34px; height: 34px; border-radius: 9px; background: var(--blue); display: grid; place-items: center; flex: none; }
+  .float-badge .fb-t { font-size: 13px; line-height: 1.3; }
+  .float-badge .fb-t b { font-family: var(--display); display: block; font-size: 15px; }
+
+  /* ---------- Marquee ---------- */
+  .marquee { border-block: 1px solid var(--line); background: var(--mist); padding: 22px 0; overflow: hidden; }
+  .marquee-track { display: flex; gap: 0; width: max-content; animation: scroll 38s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track span { font-family: var(--display); font-weight: 600; font-size: 22px; color: var(--ink-soft); padding-inline: 34px; display: inline-flex; align-items: center; gap: 34px; }
+  .marquee-track span::after { content: "✦"; color: var(--blue); font-size: 12px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding-block: 110px; }
+  .sec-head { max-width: 760px; }
+  .sec-head h2 { font-size: clamp(34px, 4vw, 52px); margin-top: 20px; }
+  .sec-head p { color: var(--muted); font-size: 19px; margin-top: 20px; max-width: 56ch; }
+  .sec-head.center { margin-inline: auto; text-align: center; }
+  .sec-head.center .eyebrow { justify-content: center; }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--mist); }
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 60px; }
+  .svc {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 34px 34px 30px; display: grid; grid-template-columns: auto 1fr; gap: 22px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -28px rgba(20,18,63,.3); border-color: transparent; }
+  .svc--wide { grid-column: 1 / -1; }
+  .svc--feature { background: var(--blue-deep); border-color: transparent; }
+  .svc--feature .num { color: #9C92FF; }
+  .svc--feature h3 { color: #fff; }
+  .svc--feature p { color: #C5C3DE; }
+  .svc--feature .tag { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(156,146,255,.18); padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .svc .num { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--blue); padding-top: 4px; }
+  .svc h3 { font-size: 22px; font-weight: 700; }
+  .svc p { color: var(--muted); margin-top: 10px; font-size: 15.5px; }
+
+  /* ---------- Approach ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border-top: 1px solid var(--line); }
+  .step { padding: 36px 28px 36px 0; position: relative; }
+  .step + .step { padding-left: 28px; border-left: 1px solid var(--line); }
+  .step .sn { font-family: var(--mono); font-size: 13px; color: var(--faint); letter-spacing: .1em; }
+  .step h3 { font-size: 22px; margin-top: 14px; }
+  .step p { color: var(--muted); font-size: 15px; margin-top: 12px; }
+  .step .dot { width: 11px; height: 11px; background: var(--blue); border-radius: 50%; position: absolute; top: -6px; left: 0; }
+  .step + .step .dot { left: 28px; }
+
+  /* ---------- Audience ---------- */
+  .audience { background: var(--blue-deep); color: #fff; }
+  .audience .eyebrow { color: #9C92FF; }
+  .audience .eyebrow::before { background: #9C92FF; }
+  .aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .audience h2 { font-size: clamp(34px, 4vw, 52px); }
+  .audience .lead { color: #C5C3DE; font-size: 19px; margin-top: 24px; max-width: 48ch; }
+  .aud-list { display: flex; flex-direction: column; gap: 2px; }
+  .aud-item { display: flex; align-items: flex-start; gap: 18px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,.12); }
+  .aud-item:first-child { border-top: none; }
+  .aud-item .ai-ic { width: 42px; height: 42px; border-radius: 11px; background: rgba(156,146,255,.16); display: grid; place-items: center; flex: none; color: #B9B2FF; }
+  .aud-item h3 { font-size: 19px; color: #fff; }
+  .aud-item p { color: #ACA9C9; font-size: 15px; margin-top: 4px; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 70px; align-items: center; }
+  .photo-slot {
+    aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; position: relative;
+    background:
+      repeating-linear-gradient(135deg, var(--mist-2) 0 14px, var(--mist) 14px 28px);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+  .about h2 { font-size: clamp(32px, 3.6vw, 46px); margin-top: 18px; }
+  .about p { color: var(--muted); font-size: 18px; margin-top: 22px; }
+  .about .sig { font-family: var(--display); font-weight: 700; font-size: 22px; margin-top: 30px; }
+  .about .sig small { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 400; margin-top: 6px; }
+
+  /* ---------- CTA ---------- */
+  .cta { background: var(--ink); color: #fff; text-align: center; }
+  .cta h2 { font-size: clamp(38px, 5vw, 68px); font-weight: 800; max-width: 18ch; margin-inline: auto; }
+  .cta p { color: #A9ABB8; font-size: 19px; margin-top: 22px; max-width: 46ch; margin-inline: auto; }
+  .cta .actions { margin-top: 42px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta .em { font-family: var(--mono); color: var(--faint); margin-top: 30px; font-size: 14px; }
+  .cta .em a { color: #fff; border-bottom: 1px solid rgba(255,255,255,.3); padding-bottom: 1px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--ink); color: #fff; border-top: 1px solid rgba(255,255,255,.1); padding-block: 46px; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+  .foot-brand { font-family: var(--display); font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 12px; }
+  .foot-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--blue); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 14px; color: #fff; }
+  .foot-links { display: flex; gap: 28px; }
+  .foot-links a { color: #A9ABB8; font-size: 15px; transition: color .15s; }
+  .foot-links a:hover { color: #fff; }
+  .foot-copy { color: #6E7080; font-size: 13.5px; font-family: var(--mono); width: 100%; padding-top: 28px; margin-top: 28px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 940px) {
+    :root { --pad-x: 24px; }
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; padding-top: 64px; padding-bottom: 80px; }
+    .hero-visual { max-width: 460px; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step, .step + .step { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 30px; }
+    .step + .step .dot, .step .dot { left: 0; }
+    .aud-grid, .about-grid { grid-template-columns: 1fr; gap: 44px; }
+    .about-grid .photo-slot { max-width: 380px; }
+    section { padding-block: 80px; }
+  }
+  @media (max-width: 560px) {
+    .hero-meta { gap: 26px; }
+    .steps { grid-template-columns: 1fr; }
+    .foot-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/gw-logo.png" alt="Gavin Wyatt logo" />
+      <span class="brand-name">
+        <b>Gavin Wyatt</b>
+        <span>SEO Consultant</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#audience">Who I help</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="mailto:hello@gavinwyatt.com" class="btn btn--primary">Email Me
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<a id="top"></a>
+<section class="hero" style="padding-block:0;">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 class="eyebrow">Brisbane SEO Consultant</h1>
+      <p class="hero-title">More <span class="blue">Google</span> and <span class="blue">AI</span> visibility. More jobs booked.</p>
+      <p class="hero-sub">I help local Brisbane businesses and trades get found online.</p>
+      <div class="hero-actions">
+        <a href="mailto:hello@gavinwyatt.com" class="btn btn--primary">Email Me
+          <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" class="btn btn--ghost">See what I do</a>
+      </div>
+      <div class="hero-meta">
+        <div class="item">
+          <div class="n">Local<span class="u">.</span></div>
+          <div class="l">Maps &amp; near-me search</div>
+        </div>
+        <div class="item">
+          <div class="n">Technical<span class="u">.</span></div>
+          <div class="l">Audits that fix the basics</div>
+        </div>
+        <div class="item">
+          <div class="n">Honest<span class="u">.</span></div>
+          <div class="l">No jargon, no lock-in</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="rank-card">
+        <div class="rc-head">
+          <div class="t">Keyword rankings</div>
+          <div class="pill">▲ Trending up</div>
+        </div>
+        <div class="rank-row win">
+          <div class="pos">#1</div>
+          <div class="kw">emergency plumber near me<small>local pack · 2,400 / mo</small></div>
+          <div class="delta">▲ 6</div>
+        </div>
+        <div class="rank-row">
+          <div class="pos">#2</div>
+          <div class="kw">roof repair [your city]<small>organic · 1,100 / mo</small></div>
+          <div class="delta">▲ 9</div>
+        </div>
+        <div class="rank-row">
+          <div class="pos">#3</div>
+          <div class="kw">licensed electrician<small>organic · 880 / mo</small></div>
+          <div class="delta">▲ 4</div>
+        </div>
+        <div class="rank-row">
+          <div class="pos">#5</div>
+          <div class="kw">same-day hvac service<small>organic · 720 / mo</small></div>
+          <div class="delta">▲ 11</div>
+        </div>
+      </div>
+      <div class="float-badge">
+        <div class="fb-ic">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 13L6.5 8.5L9.5 11.5L16 5M16 5H11M16 5V10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="fb-t"><b>More calls.</b>More booked jobs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Local SEO</span><span>AI Search Optimization</span><span>Technical Audits</span><span>Keyword Strategy</span><span>Google Business Profile</span><span>On-Page Optimization</span><span>Link Building</span><span>SEO Copywriting</span><span>Analytics &amp; Reporting</span>
+    <span>Local SEO</span><span>AI Search Optimization</span><span>Technical Audits</span><span>Keyword Strategy</span><span>Google Business Profile</span><span>On-Page Optimization</span><span>Link Building</span><span>SEO Copywriting</span><span>Analytics &amp; Reporting</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What I do</span>
+      <h2>SEO services, end to end.</h2>
+      <p>Everything you need to show up when local customers are searching — and nothing you don't. Pick one piece or the whole picture.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc">
+        <div class="num">01</div>
+        <div>
+          <h3>Technical SEO Audits</h3>
+          <p>A deep crawl of your site to find what's holding rankings back — speed, indexing, broken links, mobile issues — with a clear, prioritized fix list.</p>
+        </div>
+      </div>
+      <div class="svc svc--feature">
+        <div class="num">02</div>
+        <div>
+          <span class="tag">New</span>
+          <h3>AI Search Optimization</h3>
+          <p>Show up where customers now ask — ChatGPT, Google's AI Overviews, Gemini and Perplexity. I structure your content and data so AI tools understand, trust and recommend your business.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">03</div>
+        <div>
+          <h3>Local SEO</h3>
+          <p>Get found by customers nearby. I optimize your local presence so you show up in the map pack for the searches that bring real work.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">04</div>
+        <div>
+          <h3>Google Business Profile</h3>
+          <p>Set up, clean up and manage your Google Business Profile — categories, photos, reviews and posts — so your listing earns the click.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">05</div>
+        <div>
+          <h3>Keyword Research &amp; Strategy</h3>
+          <p>I find the exact phrases your customers type before they hire — then build a roadmap to rank for the ones worth winning.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">06</div>
+        <div>
+          <h3>On-Page Optimization</h3>
+          <p>Titles, headings, structure and content tuned page by page so search engines understand your site and customers stay on it.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">07</div>
+        <div>
+          <h3>Link Building &amp; Digital PR</h3>
+          <p>Earning relevant, trustworthy links that build your site's authority the right way — no spam, no shortcuts that get you penalized.</p>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="num">08</div>
+        <div>
+          <h3>SEO Copywriting</h3>
+          <p>Service and location pages written to rank and to read well — clear, useful content that answers questions and wins the job.</p>
+        </div>
+      </div>
+      <div class="svc svc--wide">
+        <div class="num">09</div>
+        <div>
+          <h3>Analytics &amp; Reporting</h3>
+          <p>Plain-English reports that show what's working — rankings, traffic and calls — so you always know where your money is going.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>A straightforward way of working.</h2>
+      <p>No long contracts or confusing dashboards. Just a clear process and steady, measurable progress.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="dot"></div>
+        <div class="sn">STEP 01</div>
+        <h3>Audit</h3>
+        <p>I dig into your site, your rankings and your competitors to find exactly what's working and what's losing you customers.</p>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div class="sn">STEP 02</div>
+        <h3>Plan</h3>
+        <p>You get a prioritized plan in plain English — what we fix first, what it should do, and what it'll cost.</p>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div class="sn">STEP 03</div>
+        <h3>Execute</h3>
+        <p>I do the work — technical fixes, content, local listings and links — keeping you in the loop without the jargon.</p>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div class="sn">STEP 04</div>
+        <h3>Report</h3>
+        <p>Clear monthly updates on rankings, traffic and enquiries, so you can see the return for yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIENCE ============ -->
+<section class="audience" id="audience">
+  <div class="wrap aud-grid">
+    <div>
+      <span class="eyebrow">Who I help</span>
+      <h2>Built for local &amp; blue-collar businesses.</h2>
+      <p class="lead">I work best with the trades and local services that live or die by the phone ringing. If your customers search before they call, I can help them find you first.</p>
+    </div>
+    <div class="aud-list">
+      <div class="aud-item">
+        <div class="ai-ic">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C6.5 2.5 4 5 4 8.2c0 4 6 9.3 6 9.3s6-5.3 6-9.3C16 5 13.5 2.5 10 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div>
+          <h3>Local service businesses</h3>
+          <p>Plumbers, electricians, HVAC, roofers, landscapers and the trades that serve a town or region.</p>
+        </div>
+      </div>
+      <div class="aud-item">
+        <div class="ai-ic">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17h14M5 17V8l5-4 5 4v9M9 17v-4h2v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>Owner-operators</h3>
+          <p>Small teams where the owner wears every hat and just needs the phone to ring with the right jobs.</p>
+        </div>
+      </div>
+      <div class="aud-item">
+        <div class="ai-ic">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4l2.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>Anyone tired of SEO that overpromises</h3>
+          <p>If you've been burned by an agency before, I keep it honest, simple and tied to real results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="photo-slot">
+      <img src="assets/gavin-about.jpg" alt="Gavin Wyatt, Brisbane SEO consultant" />
+    </div>
+    <div>
+      <span class="eyebrow">About</span>
+      <h2>Hi, I'm Gavin — your SEO guy.</h2>
+      <p>I'm a freelance SEO consultant who works directly with business owners, not through layers of account managers. You get one person who actually does the work, knows your business, and picks up the phone.</p>
+      <p>My focus is simple: more of the right people finding you on Google, and more of those visits turning into paying customers. No vanity metrics, no jargon — just steady, honest progress you can see.</p>
+      <div class="sig">Gavin Wyatt
+        <small>SEO Consultant</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#9C92FF;">Let's talk</span>
+    <h2 style="margin-top:22px;">Ready to climb the rankings?</h2>
+    <p>Tell me about your business and what you're trying to grow. I'll take a look and reply with honest, no-pressure advice.</p>
+    <div class="actions">
+      <a href="mailto:hello@gavinwyatt.com" class="btn btn--light">Email Me
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <span class="foot-mark">GW</span>
+        Gavin Wyatt
+      </div>
+      <nav class="foot-links">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#audience">Who I help</a>
+        <a href="#about">About</a>
+        <a href="mailto:hello@gavinwyatt.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Gavin Wyatt · SEO Consultant</span>
+      <span>Helping local businesses get found.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
