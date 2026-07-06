@@ -533,5 +533,48 @@
   </div>
 </footer>
 
+<style>
+  #pw-overlay { position: fixed; inset: 0; background: #0C0D12; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+  .pw-box { background: #fff; border-radius: 20px; padding: 48px 44px; max-width: 400px; width: 90%; text-align: center; }
+  .pw-box h2 { font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .pw-box p { font-size: 15px; color: #5C5F6B; margin-bottom: 28px; }
+  .pw-box input { width: 100%; padding: 14px 18px; border: 1px solid #E4E6EC; border-radius: 999px; font-size: 16px; font-family: "Spline Sans Mono", monospace; text-align: center; letter-spacing: 0.15em; outline: none; transition: border-color .2s; }
+  .pw-box input:focus { border-color: #2417CE; }
+  .pw-box button { margin-top: 14px; width: 100%; padding: 15px; background: #2417CE; color: #fff; border: none; border-radius: 999px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .pw-box button:hover { background: #3826F0; }
+  .pw-error { color: #e53e3e; font-size: 13px; margin-top: 10px; min-height: 18px; }
+</style>
+
+<div id="pw-overlay">
+  <div class="pw-box">
+    <h2>Gavin Wyatt</h2>
+    <p>This proposal is confidential. Enter the access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" />
+    <button onclick="checkPassword()">View Proposal</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('alv_auth') === '1') {
+      document.getElementById('pw-overlay').style.display = 'none';
+    }
+  })();
+  function checkPassword() {
+    var val = document.getElementById('pw-input').value.trim().toUpperCase();
+    if (val === 'ALV2026') {
+      sessionStorage.setItem('alv_auth', '1');
+      document.getElementById('pw-overlay').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code. Please try again.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
+
 </body>
 </html>
