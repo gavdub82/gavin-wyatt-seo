@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alvarium Design — Proposal &amp; Pricing | Gavin Wyatt</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0C0D12;
+    --ink-soft: #2A2C36;
+    --muted: #5C5F6B;
+    --faint: #8A8D99;
+    --paper: #FFFFFF;
+    --mist: #F4F5F8;
+    --mist-2: #EDEFF4;
+    --line: #E4E6EC;
+    --blue: #2417CE;
+    --blue-bright: #3826F0;
+    --blue-deep: #14123F;
+    --blue-wash: #F0EEFD;
+    --sans: "Hanken Grotesk", system-ui, sans-serif;
+    --display: "Schibsted Grotesk", system-ui, sans-serif;
+    --mono: "Spline Sans Mono", ui-monospace, monospace;
+    --maxw: 1240px;
+    --pad-x: 40px;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--blue); color: #fff; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad-x); }
+
+  .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); font-weight: 500; display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; flex: none; }
+  .eyebrow--light { color: #9C92FF; }
+  .eyebrow--light::before { background: #9C92FF; }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; transition: transform .18s ease, background .18s ease, box-shadow .18s ease; white-space: nowrap; }
+  .btn--primary { background: var(--blue); color: #fff; }
+  .btn--primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(36,23,206,.55); }
+  .btn--ghost { background: var(--mist); border-color: var(--line); color: var(--ink); }
+  .btn--ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .btn--light { background: #fff; color: var(--ink); }
+  .btn--light:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -12px rgba(0,0,0,.4); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translate(3px,-3px); }
+
+  /* Nav */
+  header.nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand-wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+  .brand-wordmark b { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .brand-wordmark span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color .15s; }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* Hero */
+  .hero { padding-block: 96px 80px; border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
+  .hero-prepared { font-family: var(--mono); font-size: 13px; color: var(--faint); margin-bottom: 22px; letter-spacing: 0.08em; }
+  .hero-title { font-family: var(--display); font-size: clamp(48px, 6vw, 82px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.0; }
+  .hero-sub { font-size: 20px; color: var(--muted); margin-top: 22px; max-width: 36ch; line-height: 1.5; }
+  .hero-meta-grid { display: flex; flex-direction: column; background: var(--mist); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .hero-meta-row { display: flex; align-items: flex-start; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+  .hero-meta-row:last-child { border-bottom: none; }
+  .meta-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); min-width: 80px; padding-top: 2px; flex: none; }
+  .meta-value { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .meta-value--blue { color: var(--blue); font-weight: 600; }
+
+  /* Sections */
+  section { padding-block: 100px; }
+  .sec-head { max-width: 760px; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(34px, 4vw, 50px); margin-top: 18px; }
+  .sec-head p { color: var(--muted); font-size: 18px; margin-top: 18px; max-width: 58ch; line-height: 1.6; }
+
+  /* Overview cards */
+  .overview-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; max-width: 760px; }
+  .ov-card { border-radius: var(--radius); padding: 28px 30px; }
+  .ov-card--light { background: var(--mist); border: 1px solid var(--line); }
+  .ov-card--dark { background: var(--blue-deep); }
+  .ov-card .phase-num { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+  .ov-card--light .phase-num { color: var(--blue); }
+  .ov-card--dark .phase-num { color: #9C92FF; }
+  .ov-card .phase-name { font-family: var(--display); font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+  .ov-card--dark .phase-name { color: #fff; }
+  .ov-card .phase-price { font-family: var(--display); font-size: 30px; font-weight: 800; margin-top: 10px; line-height: 1; }
+  .ov-card--light .phase-price { color: var(--blue); }
+  .ov-card--dark .phase-price { color: #9C92FF; }
+  .ov-card .phase-freq { font-family: var(--mono); font-size: 12px; margin-top: 4px; }
+  .ov-card--light .phase-freq { color: var(--faint); }
+  .ov-card--dark .phase-freq { color: #6E7080; }
+
+  /* Phase header */
+  .phase-section { background: var(--mist); }
+  .phase-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid var(--line); margin-bottom: 56px; flex-wrap: wrap; }
+  .phase-header .ph-left { flex: 1; min-width: 240px; }
+  .phase-label { font-family: var(--mono); font-size: 13px; color: var(--blue); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .phase-label::before { content: ""; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; flex: none; }
+  .phase-title { font-family: var(--display); font-size: clamp(30px, 3.5vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+  .phase-desc { color: var(--muted); font-size: 17px; margin-top: 16px; max-width: 52ch; line-height: 1.6; }
+  .price-tag { text-align: right; flex: none; }
+  .price-tag .amount { font-family: var(--display); font-size: clamp(38px, 4.5vw, 58px); font-weight: 800; letter-spacing: -0.03em; color: var(--blue); line-height: 1; }
+  .price-tag .per { font-family: var(--mono); font-size: 13px; color: var(--faint); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+  .price-tag .note { font-size: 13px; color: var(--faint); margin-top: 6px; }
+
+  /* Deliverable grid */
+  .deliv-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .deliv-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 30px 26px; }
+  .deliv-card--wide { grid-column: 1 / -1; }
+  .deliv-card--feature { background: var(--blue-deep); border-color: transparent; }
+  .dc-num { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--blue); letter-spacing: 0.12em; margin-bottom: 12px; }
+  .deliv-card--feature .dc-num { color: #9C92FF; }
+  .dc-tag { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(156,146,255,.18); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .deliv-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 16px; }
+  .deliv-card--feature h3 { color: #fff; }
+
+  .plus-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .plus-list li { display: flex; align-items: baseline; gap: 12px; font-size: 15px; color: var(--ink-soft); line-height: 1.45; }
+  .plus-list li::before { content: "+"; font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--blue); flex: none; }
+  .deliv-card--feature .plus-list li { color: #C5C3DE; }
+  .deliv-card--feature .plus-list li::before { color: #9C92FF; }
+
+  .reporting-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 9px 40px; }
+
+  /* Investment */
+  .investment { background: var(--ink); color: #fff; }
+  .investment .sec-head h2 { color: #fff; }
+  .inv-table { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
+  .inv-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; padding: 30px 34px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .inv-row:last-child { border-bottom: none; background: rgba(156,146,255,.08); }
+  .rname { font-family: var(--display); font-size: 20px; font-weight: 700; color: #fff; }
+  .rdesc { font-size: 14px; color: #ACA9C9; margin-top: 6px; max-width: 54ch; line-height: 1.5; }
+  .rprice { font-family: var(--display); font-size: 26px; font-weight: 800; color: #fff; text-align: right; white-space: nowrap; }
+  .rper { font-family: var(--mono); font-size: 12px; color: #6E7080; letter-spacing: 0.1em; text-transform: uppercase; text-align: right; margin-top: 4px; }
+  .inv-row:last-child .rprice { color: #B9B2FF; font-size: 32px; }
+  .terms { margin-top: 40px; padding: 28px 34px; border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); }
+  .terms-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #9C92FF; margin-bottom: 10px; }
+  .terms p { font-size: 14px; color: #6E7080; line-height: 1.7; font-family: var(--mono); }
+
+  /* CTA */
+  .cta { text-align: center; padding-block: 120px; }
+  .cta h2 { font-size: clamp(36px, 4.5vw, 60px); font-weight: 800; max-width: 20ch; margin-inline: auto; margin-top: 20px; }
+  .cta p { color: var(--muted); font-size: 18px; margin-top: 20px; max-width: 48ch; margin-inline: auto; }
+  .cta-actions { margin-top: 44px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta-contacts { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--line); }
+  .cta-contact .name { font-family: var(--display); font-weight: 700; font-size: 18px; }
+  .cta-contact .role { font-family: var(--mono); font-size: 12px; color: var(--faint); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .cta-contact .email { font-size: 15px; color: var(--blue); margin-top: 8px; }
+
+  /* Footer */
+  footer { background: var(--ink); color: #fff; border-top: 1px solid rgba(255,255,255,.1); padding-block: 46px; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+  .foot-brand { font-family: var(--display); font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 12px; }
+  .foot-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--blue); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 14px; color: #fff; }
+  .foot-copy { color: #6E7080; font-size: 13px; font-family: var(--mono); width: 100%; padding-top: 26px; margin-top: 26px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    :root { --pad-x: 24px; }
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .deliv-grid { grid-template-columns: 1fr; }
+    .deliv-card--wide { grid-column: 1; }
+    .overview-cards { grid-template-columns: 1fr; }
+    .phase-header { flex-direction: column; gap: 24px; }
+    .price-tag { text-align: left; }
+    section { padding-block: 72px; }
+    .inv-row { grid-template-columns: 1fr; gap: 12px; }
+    .rprice, .rper { text-align: left !important; }
+    .reporting-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="30" height="30" rx="7" fill="#2417CE"/>
+        <text x="15" y="21" font-family="Schibsted Grotesk, system-ui, sans-serif" font-weight="800" font-size="14" fill="white" text-anchor="middle">GW</text>
+      </svg>
+      <span class="brand-wordmark">
+        <b>Gavin Wyatt</b>
+        <span>SEO &amp; Content Proposal</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#phase1">Phase 1</a>
+      <a href="#phase2">Phase 2</a>
+      <a href="#investment">Investment</a>
+      <a href="#next">Next Steps</a>
+    </nav>
+    <a href="mailto:hello@gavinwyatt.com" class="btn btn--primary">
+      Get in touch
+      <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<a id="top"></a>
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-prepared">Prepared for</div>
+      <h1 class="hero-title">Alvarium<br>Design.</h1>
+      <p class="hero-sub">A two-phase engagement: custom website build, then ongoing SEO and content to grow it.</p>
+    </div>
+    <div class="hero-meta-grid">
+      <div class="hero-meta-row">
+        <span class="meta-label">Markets</span>
+        <span class="meta-value">Sydney (AU) + London (UK)</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="meta-label">Prepared</span>
+        <span class="meta-value">June 2026</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="meta-label">SEO &amp; Content</span>
+        <span class="meta-value">Gavin Wyatt</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="meta-label">Development &amp; AI</span>
+        <span class="meta-value">Angus Burnett-Smith</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="meta-label">Valid until</span>
+        <span class="meta-value">30 days from issue</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="meta-label">Status</span>
+        <span class="meta-value meta-value--blue">Confidential</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Overview</span>
+      <h2>Two phases, one programme.</h2>
+      <p>This proposal sets out a two-phase engagement for Alvarium Design. Phase 1 is a complete website rebuild: a custom, fast, search-ready site built across both the Sydney and London markets, engineered from the ground up to support future AI functionality including CRM and project management integration.</p>
+      <p style="margin-top:16px;">Phase 2 is the ongoing SEO and content partnership that grows the site, builds local authority in both markets, and turns the new foundation into a consistent source of enquiries. Both Gavin Wyatt and Angus Burnett-Smith work across the build, combining SEO and content strategy with modern development and AI capability.</p>
+    </div>
+    <div class="overview-cards">
+      <div class="ov-card ov-card--light">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-name">Website Build</div>
+        <div class="phase-price">$5,500</div>
+        <div class="phase-freq">ONE-OFF INC GST</div>
+      </div>
+      <div class="ov-card ov-card--dark">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-name" style="color:#fff;">Ongoing SEO</div>
+        <div class="phase-price">$2,200</div>
+        <div class="phase-freq">PER MONTH INC GST</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 1 -->
+<section class="phase-section" id="phase1">
+  <div class="wrap">
+    <div class="phase-header">
+      <div class="ph-left">
+        <div class="phase-label">Phase 1</div>
+        <div class="phase-title">Website Build</div>
+        <p class="phase-desc">A custom 10-page website built with Claude Code and deployed on Netlify. The current aesthetic is preserved and refined, while the structure underneath is rebuilt for search visibility across both markets. Architected to support future AI functionality, so CRM, project management, and workflow tools can be layered in without rebuilding.</p>
+      </div>
+      <div class="price-tag">
+        <div class="amount">$5,500</div>
+        <div class="per">One-off inc GST</div>
+        <div class="note">Covers everything in Phase 1</div>
+      </div>
+    </div>
+
+    <div class="deliv-grid">
+      <div class="deliv-card">
+        <div class="dc-num">01</div>
+        <h3>Research &amp; Strategy</h3>
+        <ul class="plus-list">
+          <li>Full audit of the existing site and baseline metrics</li>
+          <li>Keyword research across services, sectors, and both locations</li>
+          <li>Sector and location keyword mapping to prevent overlap</li>
+          <li>Site architecture and URL structure planning</li>
+          <li>NAP consistency resolution across both offices</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">02</div>
+        <h3>The 10-Page Website</h3>
+        <ul class="plus-list">
+          <li>Home — brand anchor</li>
+          <li>About — studio story &amp; team</li>
+          <li>Services — overview hub</li>
+          <li>Contact — both offices, embedded maps</li>
+          <li>Interior Design Sydney — location page</li>
+          <li>Interior Design London — location page</li>
+          <li>Scientific &amp; Laboratory Design — sector page</li>
+          <li>Educational Space Design — sector page</li>
+          <li>Corporate Interior Design — sector page</li>
+          <li>Projects — portfolio index</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">03</div>
+        <h3>Content &amp; On-Page</h3>
+        <ul class="plus-list">
+          <li>Bespoke, SEO-optimised copy for all 10 pages</li>
+          <li>Title tags, meta descriptions, and heading structure per page</li>
+          <li>Location pages written with genuine local context for each city</li>
+          <li>Descriptive image alt text throughout</li>
+          <li>Internal linking structure</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">04</div>
+        <h3>Technical Build</h3>
+        <ul class="plus-list">
+          <li>Custom build on Claude Code, deployed on Netlify</li>
+          <li>LocalBusiness schema per office with correct country codes</li>
+          <li>XML sitemap, canonical tags, robots.txt</li>
+          <li>Mobile responsive, optimised for Core Web Vitals</li>
+          <li>HTTPS and redirect mapping from the existing site</li>
+          <li>URL structure built to accommodate future growth to 20+ pages</li>
+        </ul>
+      </div>
+      <div class="deliv-card deliv-card--feature">
+        <div class="dc-num">05</div>
+        <span class="dc-tag">Future-Ready</span>
+        <h3>Built for AI</h3>
+        <ul class="plus-list">
+          <li>Architecture designed to support AI functionality as the studio scales</li>
+          <li>Ready for CRM integration</li>
+          <li>Ready for project management and workflow tools</li>
+          <li>A codebase Alvarium owns outright, with no platform lock-in</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">06</div>
+        <h3>Analytics &amp; Tracking Setup</h3>
+        <ul class="plus-list">
+          <li>GA4 configured with conversion events (form, phone, email)</li>
+          <li>Google Search Console verified with sitemap submitted</li>
+          <li>Google Business Profile setup &amp; optimisation — Sydney</li>
+          <li>Google Business Profile setup &amp; optimisation — London</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section id="phase2">
+  <div class="wrap">
+    <div class="phase-header">
+      <div class="ph-left">
+        <div class="phase-label">Phase 2</div>
+        <div class="phase-title">Ongoing SEO &amp; Content</div>
+        <p class="phase-desc">The website is the foundation. Phase 2 is the engine that builds on it: a monthly SEO and content partnership that grows the site, strengthens local authority in both Sydney and London, and turns the new site into a consistent source of qualified enquiries.</p>
+      </div>
+      <div class="price-tag">
+        <div class="amount">$2,200</div>
+        <div class="per">Per month inc GST</div>
+        <div class="note">Rolling monthly, no long lock-in</div>
+      </div>
+    </div>
+
+    <div class="deliv-grid">
+      <div class="deliv-card">
+        <div class="dc-num">01</div>
+        <h3>Local SEO — Both Markets</h3>
+        <ul class="plus-list">
+          <li>Ongoing management of both Google Business Profiles</li>
+          <li>Monthly GBP posts for Sydney and London</li>
+          <li>Review acquisition strategy per location</li>
+          <li>Directory citations across AU and UK with consistent NAP</li>
+          <li>Local ranking monitoring per market</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">02</div>
+        <h3>Content Programme</h3>
+        <ul class="plus-list">
+          <li>Regular blog and insights articles serving both markets</li>
+          <li>Project case study write-ups</li>
+          <li>New service pages added over time</li>
+          <li>Sector-plus-location pages targeting long-tail terms</li>
+          <li>All content optimised and aligned to keyword strategy</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">03</div>
+        <h3>Site Growth</h3>
+        <ul class="plus-list">
+          <li>Structured expansion from 10 pages toward 20+ over time</li>
+          <li>New pages prioritised by performance data and opportunity</li>
+          <li>Ongoing on-page optimisation of existing pages</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <div class="dc-num">04</div>
+        <h3>Technical &amp; Monitoring</h3>
+        <ul class="plus-list">
+          <li>Ongoing technical SEO maintenance and monitoring</li>
+          <li>Crawl error, schema, and performance checks</li>
+          <li>Search Console monitoring across both markets</li>
+        </ul>
+      </div>
+      <div class="deliv-card deliv-card--wide">
+        <div class="dc-num">05</div>
+        <h3>Reporting</h3>
+        <ul class="plus-list reporting-grid">
+          <li>Monthly report: organic visibility by location</li>
+          <li>Keyword movement on target terms</li>
+          <li>GBP performance for both offices</li>
+          <li>Traffic and enquiry tracking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT SUMMARY -->
+<section class="investment" id="investment">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow eyebrow--light">Investment Summary</span>
+      <h2>Clear pricing, no surprises.</h2>
+    </div>
+    <div class="inv-table">
+      <div class="inv-row">
+        <div>
+          <div class="rname">Phase 1 — Website Build</div>
+          <div class="rdesc">One-off. 10-page custom site, bespoke content, technical SEO, analytics &amp; GBP setup for both offices.</div>
+        </div>
+        <div>
+          <div class="rprice">$5,500</div>
+          <div class="rper">One-off inc GST</div>
+        </div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="rname">Phase 2 — Ongoing SEO &amp; Content</div>
+          <div class="rdesc">Monthly. GBP management, content programme, site growth, technical monitoring and reporting across both markets.</div>
+        </div>
+        <div>
+          <div class="rprice">$2,200</div>
+          <div class="rper">Per month inc GST</div>
+        </div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="rname">Year One Total</div>
+          <div class="rdesc">Phase 1 build + 12 months of Phase 2 ongoing SEO &amp; content.</div>
+        </div>
+        <div>
+          <div class="rprice">$31,900</div>
+          <div class="rper">Year one inc GST</div>
+        </div>
+      </div>
+    </div>
+    <div class="terms">
+      <div class="terms-label">Terms</div>
+      <p>All prices include GST. Phase 1 is invoiced 50% on commencement and 50% on launch. Phase 2 is billed monthly and begins once the site is live — no long-term lock-in, can be adjusted or paused with reasonable notice. Hosting on Netlify and domain costs are minimal and billed at cost or arranged directly by Alvarium. Proposal valid for 30 days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="cta" id="next">
+  <div class="wrap">
+    <span class="eyebrow">Next Step</span>
+    <h2>Ready to get started?</h2>
+    <p>Happy to walk through any part of this proposal, adjust the scope, or answer questions before you decide. Once ready, Phase 1 can begin as soon as we have confirmed the office details and content direction.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@gavinwyatt.com" class="btn btn--primary">
+        Email Gavin
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:angus@burnettsmith.com" class="btn btn--ghost">
+        Email Angus
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-contact">
+        <div class="name">Gavin Wyatt</div>
+        <div class="role">SEO &amp; Content</div>
+        <div class="email"><a href="mailto:hello@gavinwyatt.com">hello@gavinwyatt.com</a></div>
+      </div>
+      <div class="cta-contact">
+        <div class="name">Angus Burnett-Smith</div>
+        <div class="role">Development &amp; AI</div>
+        <div class="email"><a href="mailto:angus@burnettsmith.com">angus@burnettsmith.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <span class="foot-mark">GW</span>
+        Gavin Wyatt
+      </div>
+      <div style="font-family:var(--mono);font-size:13px;color:#6E7080;">Alvarium Design — Proposal &amp; Pricing · June 2026</div>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Gavin Wyatt · SEO Consultant</span>
+      <span>Confidential — prepared for Alvarium Design</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
