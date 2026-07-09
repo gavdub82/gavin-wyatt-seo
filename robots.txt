@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /alvarium/
+
+Sitemap: https://gavinwyatt.com/sitemap.xml
