@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Strata Dynamics — Proposal &amp; Pricing | Gavin Wyatt</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0C0D12;
+    --ink-soft: #2A2C36;
+    --muted: #5C5F6B;
+    --faint: #8A8D99;
+    --paper: #FFFFFF;
+    --mist: #F4F5F8;
+    --mist-2: #EDEFF4;
+    --line: #E4E6EC;
+    --blue: #2417CE;
+    --blue-bright: #3826F0;
+    --blue-deep: #14123F;
+    --blue-wash: #F0EEFD;
+    --sans: "Hanken Grotesk", system-ui, sans-serif;
+    --display: "Schibsted Grotesk", system-ui, sans-serif;
+    --mono: "Spline Sans Mono", ui-monospace, monospace;
+    --maxw: 1240px;
+    --pad-x: 40px;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--blue); color: #fff; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad-x); }
+
+  .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); font-weight: 500; display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; flex: none; }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; transition: transform .18s ease, background .18s ease, box-shadow .18s ease; white-space: nowrap; }
+  .btn--primary { background: var(--blue); color: #fff; }
+  .btn--primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(36,23,206,.55); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translate(3px,-3px); }
+
+  /* Nav */
+  header.nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand-wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+  .brand-wordmark b { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .brand-wordmark span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+
+  /* Hero */
+  .hero { padding-block: 96px 80px; border-bottom: 1px solid var(--line); }
+  .hero-prepared { font-family: var(--mono); font-size: 13px; color: var(--faint); margin-bottom: 22px; letter-spacing: 0.08em; }
+  .hero-title { font-family: var(--display); font-size: clamp(48px, 6vw, 82px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.0; }
+  .hero-sub { font-size: 20px; color: var(--muted); margin-top: 22px; max-width: 48ch; line-height: 1.5; }
+
+  /* Sections */
+  section { padding-block: 100px; }
+  .sec-head { max-width: 760px; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(34px, 4vw, 50px); margin-top: 18px; }
+  .sec-head p { color: var(--muted); font-size: 18px; margin-top: 18px; max-width: 58ch; line-height: 1.6; }
+
+  /* Pricing table */
+  .pricing-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .pricing-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+  .pricing-table th, .pricing-table td { padding: 18px 22px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; }
+  .pricing-table thead th { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.01em; border-bottom: 2px solid var(--line); padding-bottom: 22px; }
+  .pricing-table thead th:first-child { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .pricing-table .row-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); font-weight: 600; white-space: nowrap; padding-right: 30px; }
+  .pricing-table tbody tr:last-child td { border-bottom: none; }
+  .pricing-table tbody tr:hover td { background: var(--mist); }
+  .pricing-table td:not(:first-child) { color: var(--ink-soft); }
+
+  /* Highlight middle column */
+  .pricing-table .col-feature { background: var(--blue-wash); }
+  .pricing-table thead .col-feature { position: relative; }
+  .pricing-table thead .col-feature::after { content: "Most popular"; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); background: var(--blue-wash); display: block; margin-top: 6px; font-weight: 600; }
+
+  /* Price row */
+  .price-val { font-family: var(--display); font-size: 22px; font-weight: 800; color: var(--blue); letter-spacing: -0.02em; }
+  .price-sub { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; }
+
+  /* Not included */
+  .na { color: var(--faint) !important; font-style: italic; }
+
+  /* Footer */
+  footer { background: var(--ink); color: #fff; border-top: 1px solid rgba(255,255,255,.1); padding-block: 46px; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+  .foot-brand { font-family: var(--display); font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 12px; }
+  .foot-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--blue); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 14px; color: #fff; }
+  .foot-copy { color: #6E7080; font-size: 13px; font-family: var(--mono); width: 100%; padding-top: 26px; margin-top: 26px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    :root { --pad-x: 24px; }
+    .hero { padding-block: 60px 48px; }
+    section { padding-block: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="30" height="30" rx="7" fill="#2417CE"/>
+        <text x="15" y="21" font-family="Schibsted Grotesk, system-ui, sans-serif" font-weight="800" font-size="14" fill="white" text-anchor="middle">GW</text>
+      </svg>
+      <span class="brand-wordmark">
+        <b>Gavin Wyatt</b>
+        <span>SEO Proposal</span>
+      </span>
+    </a>
+    <a href="mailto:hello@gavinwyatt.com" class="btn btn--primary">
+      Get in touch
+      <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<a id="top"></a>
+<div class="wrap hero">
+  <div class="hero-prepared">Prepared for</div>
+  <h1 class="hero-title">Strata<br>Dynamics.</h1>
+  <p class="hero-sub">SEO services built around your business — from technical foundations through to full-service growth.</p>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Three tiers, one clear path.</h2>
+      <p>All plans include a one-off onboarding fee of $750. Weekly rates are billed monthly.</p>
+    </div>
+    <div class="pricing-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>SEO Foundations</th>
+            <th class="col-feature">Growth Retainer</th>
+            <th>Full Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Price</td>
+            <td>
+              <div class="price-val">$495/wk</div>
+              <div class="price-sub">incl GST</div>
+            </td>
+            <td class="col-feature">
+              <div class="price-val">$695/wk</div>
+              <div class="price-sub">incl GST</div>
+            </td>
+            <td>
+              <div class="price-val">$895/wk</div>
+              <div class="price-sub">incl GST</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="row-label">Onboarding</td>
+            <td>$750 one-off</td>
+            <td class="col-feature">$750 one-off</td>
+            <td>$750 one-off</td>
+          </tr>
+          <tr>
+            <td class="row-label">SEO Scope</td>
+            <td>Technical audit and fixes, on-page optimisation of key pages, keyword mapping</td>
+            <td class="col-feature">Everything in Foundations, plus ongoing technical maintenance</td>
+            <td>Everything in Growth, plus quarterly deep-dive review</td>
+          </tr>
+          <tr>
+            <td class="row-label">Content</td>
+            <td>1 blog post/month</td>
+            <td class="col-feature">2 blog posts/month</td>
+            <td>3–4 blog posts/month</td>
+          </tr>
+          <tr>
+            <td class="row-label">Web Management</td>
+            <td class="na">Not included</td>
+            <td class="col-feature">Minor updates, plugin and security checks</td>
+            <td>Full site management, page builds, ongoing maintenance</td>
+          </tr>
+          <tr>
+            <td class="row-label">Local SEO</td>
+            <td>Citation audit and building on core directories, NAP consistency check, GBP setup and optimisation, monthly GBP posts</td>
+            <td class="col-feature">Ongoing citation building and management across directories, full GBP management, weekly posts, review responses</td>
+            <td>Full citation building and management across directories, quarterly NAP audit, full GBP management, weekly posts, review responses</td>
+          </tr>
+          <tr>
+            <td class="row-label">Reporting</td>
+            <td>Monthly GA4 and ranking reports, quarterly strategy call</td>
+            <td class="col-feature">Monthly GA4 and ranking reports, monthly strategy call</td>
+            <td>Monthly GA4 and ranking reports, monthly strategy call</td>
+          </tr>
+          <tr>
+            <td class="row-label">Site Refresh</td>
+            <td class="na">Not included</td>
+            <td class="col-feature">Optional add-on, priced separately</td>
+            <td>First 90 days included in retainer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <span class="foot-mark">GW</span>
+        Gavin Wyatt
+      </div>
+      <div style="font-family:var(--mono);font-size:13px;color:#6E7080;">Strata Dynamics — Proposal &amp; Pricing · August 2026</div>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Gavin Wyatt · SEO Consultant</span>
+      <span>Confidential — prepared for Strata Dynamics</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  #pw-overlay { position: fixed; inset: 0; background: #0C0D12; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+  .pw-box { background: #fff; border-radius: 20px; padding: 48px 44px; max-width: 400px; width: 90%; text-align: center; }
+  .pw-box h2 { font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .pw-box p { font-size: 15px; color: #5C5F6B; margin-bottom: 28px; }
+  .pw-box input { width: 100%; padding: 14px 18px; border: 1px solid #E4E6EC; border-radius: 999px; font-size: 16px; font-family: "Spline Sans Mono", monospace; text-align: center; letter-spacing: 0.15em; outline: none; transition: border-color .2s; }
+  .pw-box input:focus { border-color: #2417CE; }
+  .pw-box button { margin-top: 14px; width: 100%; padding: 15px; background: #2417CE; color: #fff; border: none; border-radius: 999px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .pw-box button:hover { background: #3826F0; }
+  .pw-error { color: #e53e3e; font-size: 13px; margin-top: 10px; min-height: 18px; }
+</style>
+
+<div id="pw-overlay">
+  <div class="pw-box">
+    <h2>Gavin Wyatt</h2>
+    <p>This proposal is confidential. Enter the access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" />
+    <button onclick="checkPassword()">View Proposal</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('sd_auth') === '1') {
+      document.getElementById('pw-overlay').style.display = 'none';
+    }
+  })();
+  function checkPassword() {
+    var val = document.getElementById('pw-input').value.trim().toUpperCase();
+    if (val === 'SD2026') {
+      sessionStorage.setItem('sd_auth', '1');
+      document.getElementById('pw-overlay').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code. Please try again.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
+
+</body>
+</html>
