@@ -101,10 +101,15 @@
   .foot-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--blue); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 14px; color: #fff; }
   .foot-copy { color: #6E7080; font-size: 13px; font-family: var(--mono); width: 100%; padding-top: 26px; margin-top: 26px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 
+  .access-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .access-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 500; color: var(--ink-soft); }
+  .access-list li::before { content: ""; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; flex: none; }
+
   @media (max-width: 900px) {
     :root { --pad-x: 24px; }
     .hero { padding-block: 60px 48px; }
     section { padding-block: 60px; }
+    #access .wrap > div { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -143,32 +148,27 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Pricing</span>
-      <h2>Three tiers, one clear path.</h2>
-      <p>All plans include a one-off onboarding fee of $750. Weekly rates are billed monthly.</p>
+      <h2>Two packages, one clear path.</h2>
+      <p>All plans include a one-off onboarding fee of $750. Billed monthly.</p>
     </div>
     <div class="pricing-wrap">
       <table class="pricing-table">
         <thead>
           <tr>
             <th></th>
-            <th>SEO Foundations</th>
-            <th class="col-feature">Growth Retainer</th>
-            <th>Full Service</th>
+            <th>Foundation</th>
+            <th class="col-feature">Growth</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="row-label">Price</td>
             <td>
-              <div class="price-val">$495/wk</div>
+              <div class="price-val">$1,980/month</div>
               <div class="price-sub">incl GST</div>
             </td>
             <td class="col-feature">
-              <div class="price-val">$695/wk</div>
-              <div class="price-sub">incl GST</div>
-            </td>
-            <td>
-              <div class="price-val">$895/wk</div>
+              <div class="price-val">$2,695/month</div>
               <div class="price-sub">incl GST</div>
             </td>
           </tr>
@@ -176,46 +176,48 @@
             <td class="row-label">Onboarding</td>
             <td>$750 one-off</td>
             <td class="col-feature">$750 one-off</td>
-            <td>$750 one-off</td>
           </tr>
           <tr>
             <td class="row-label">SEO Scope</td>
-            <td>Technical audit and fixes, on-page optimisation of key pages, keyword mapping</td>
-            <td class="col-feature">Everything in Foundations, plus ongoing technical maintenance</td>
-            <td>Everything in Growth, plus quarterly deep-dive review</td>
+            <td>On-page optimisation, keyword research and mapping, technical SEO audits and implementation, schema and structured data audits and implementation, ranking monitoring and strategy, redirect and indexing fixes</td>
+            <td class="col-feature">On-page optimisation, keyword research and mapping, technical SEO audits and implementation, schema and structured data audits and implementation, ranking monitoring and strategy, redirect and indexing fixes</td>
+          </tr>
+          <tr>
+            <td class="row-label">Website Management</td>
+            <td>Core Web Vitals review, off-server website backups, plugin and security checks, login security management, ongoing maintenance and minor content updates</td>
+            <td class="col-feature">Everything in Foundation, plus extensive content management and updates</td>
           </tr>
           <tr>
             <td class="row-label">Content</td>
-            <td>1 blog post/month</td>
-            <td class="col-feature">2 blog posts/month</td>
-            <td>3–4 blog posts/month</td>
-          </tr>
-          <tr>
-            <td class="row-label">Web Management</td>
-            <td class="na">Not included</td>
-            <td class="col-feature">Minor updates, plugin and security checks</td>
-            <td>Full site management, page builds, ongoing maintenance</td>
-          </tr>
-          <tr>
-            <td class="row-label">Local SEO</td>
-            <td>Citation audit and building on core directories, NAP consistency check, GBP setup and optimisation, monthly GBP posts</td>
-            <td class="col-feature">Ongoing citation building and management across directories, full GBP management, weekly posts, review responses</td>
-            <td>Full citation building and management across directories, quarterly NAP audit, full GBP management, weekly posts, review responses</td>
-          </tr>
-          <tr>
-            <td class="row-label">Reporting</td>
-            <td>Monthly GA4 and ranking reports, quarterly strategy call</td>
-            <td class="col-feature">Monthly GA4 and ranking reports, monthly strategy call</td>
-            <td>Monthly GA4 and ranking reports, monthly strategy call</td>
-          </tr>
-          <tr>
-            <td class="row-label">Site Refresh</td>
-            <td class="na">Not included</td>
-            <td class="col-feature">Optional add-on, priced separately</td>
-            <td>First 90 days included in retainer</td>
+            <td>1 blog post per month</td>
+            <td class="col-feature">2 blog posts per month; content updates as required to pages</td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS + ONBOARDING -->
+<section id="access" style="background: var(--mist); padding-block: 80px;">
+  <div class="wrap">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+      <div>
+        <span class="eyebrow">Access Required</span>
+        <h2 style="font-size: clamp(24px, 3vw, 36px); margin-top: 18px; margin-bottom: 24px;">What I'll need from you</h2>
+        <ul class="access-list">
+          <li>WordPress</li>
+          <li>Domain hosting</li>
+          <li>Web hosting</li>
+          <li>Google Analytics</li>
+          <li>Google Business Profile</li>
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">Onboarding Fee</span>
+        <h2 style="font-size: clamp(24px, 3vw, 36px); margin-top: 18px; margin-bottom: 24px;">Why the $750 one-off?</h2>
+        <p style="color: var(--muted); font-size: 16px; line-height: 1.7;">Covers setup and familiarisation with your website and tracking, keyword research, competitor research, and technical audits and implementation. This work happens before the monthly retainer begins and sets the foundation for everything that follows.</p>
+      </div>
     </div>
   </div>
 </section>
